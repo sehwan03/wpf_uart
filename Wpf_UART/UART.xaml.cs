@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using System.IO.Ports;
 using System.Windows.Threading;
 using System.Threading;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Wpf_UART
 {
@@ -82,6 +84,89 @@ namespace Wpf_UART
             Application.Current.Shutdown();
         }
 
+        private void MenuItem_Save_Click(object sender, RoutedEventArgs e)
+        {
+#if false
+            // Create a RenderTargetBitmap of the desired size and render the content.
+            RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
+                (int)this.ActualWidth, (int)this.ActualHeight, 96, 96, PixelFormats.Pbgra32);
+            renderBitmap.Render(this);
+
+            // Create a file dialog for saving the png file.
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "PNG Image|*.png";
+            if (saveDialog.ShowDialog() == true)
+            {
+                // Create a PngBitmapEncoder and save the image to the file.
+                PngBitmapEncoder encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
+                using (FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create))
+                {
+                    encoder.Save(stream);
+                }
+            }
+#else
+            // Create a new save file dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            // Set the file filter
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+
+            // Show the save file dialog and get the result
+            bool? result = saveFileDialog.ShowDialog();
+
+            // Check if the user clicked the "Save" button
+            if (result == true)
+            {
+                // Get the selected file path
+                string filePath = saveFileDialog.FileName;
+
+                // Save the contents of the txListBox to the selected file
+                List<string> allItems = new List<string>();
+                foreach (string item in txListBox.Items)
+                {
+                    allItems.Add(item + ";");
+                }
+                foreach (string item in rxListBox.Items)
+                {
+                    allItems.Add(item.Replace(Environment.NewLine, "")) ;
+                }
+                File.WriteAllText(filePath, string.Join("", allItems));
+            }
+#endif
+        }
+
+        private void MenuItem_Open_Click(object sender, EventArgs e)
+        {
+            // Reset listbox
+            MenuItem_ClearCommunication_Click(sender, e);
+            // Open a file dialog
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Read the selected file
+                string filename = openFileDialog.FileName;
+                string[] lines = File.ReadAllLines(filename);
+
+                // Add the lines to the Rx list box
+                foreach (string line in lines)
+                {
+                    int semicolonIndex = line.IndexOf(';');
+                    if (semicolonIndex >= 0)
+                    {
+                        string txText = line.Substring(0, semicolonIndex).Trim();
+                        string rxText = line.Substring(semicolonIndex + 1).Trim();
+                        txListBox.Items.Add(txText);
+                        rxListBox.Items.Add(rxText);
+                    }
+                    else
+                    {
+                        rxListBox.Items.Add(line);
+                    }
+                }
+            }
+        }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
@@ -89,6 +174,10 @@ namespace Wpf_UART
                 if (e.Key == Key.W)
                 {
                     MenuItem_ClearCommunication_Click(sender, e);
+                }
+                if (e.Key == Key.S)
+                {
+                    MenuItem_Save_Click(sender, e);
                 }
             }
         }
@@ -141,6 +230,7 @@ namespace Wpf_UART
                     /*para.Inlines.Add("Failed to SEND" + data + "\n" + ex + "\n");
                     mcFlowDoc.Blocks.Add(para);
                     Commdata.Document = mcFlowDoc;*/
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

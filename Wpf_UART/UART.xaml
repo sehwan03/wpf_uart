@@ -46,14 +46,12 @@
 
         <Menu Grid.Row="0" Grid.ColumnSpan="6" Margin="0,0,0,40" Background="LightGray">
             <MenuItem Header="File" TabIndex="0">
-                <MenuItem Header="Open"/>
-                <MenuItem Header="Save"/>
-                <MenuItem Header="Exit" Click="MenuItem_Exit_Click"/>
+                <MenuItem Header="Open" Click="MenuItem_Open_Click" InputGestureText="Ctrl+O"/>
+                <MenuItem Header="Save" Click="MenuItem_Save_Click" InputGestureText="Ctrl+S"/>
+                <MenuItem Header="Exit" Click="MenuItem_Exit_Click" InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="Edit" TabIndex="1">
-                <MenuItem Header="Cut"/>
-                <MenuItem Header="Copy"/>
-                <MenuItem Header="Paste"/>
+                <MenuItem Header="Non Function"/>
             </MenuItem>
             <MenuItem Header="Tools" TabIndex="2">
                 <MenuItem Header="Translate" Click="MenuItem_Translate_Click"/>
