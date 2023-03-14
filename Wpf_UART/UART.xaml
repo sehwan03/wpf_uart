@@ -1,0 +1,68 @@
+﻿<Page x:Class="Wpf_UART.UART"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="700"
+      Title="UART">
+
+    <Grid Margin=" 10,0,10,10" KeyDown="uartTxTextBox_KeyDown" >
+
+        <Grid.Background>
+            <SolidColorBrush Color="#94A4A5"/>
+        </Grid.Background>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" MinWidth="30"/>
+            <ColumnDefinition Width="30*" MinWidth="300"/>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="30*" MinWidth="300"/>
+            <ColumnDefinition Width="3*" MinWidth="30"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="61"/>
+            <RowDefinition Height="Auto" MinHeight="29"/>
+            <RowDefinition Height="*"    MinHeight="227"/>
+            <RowDefinition Height="Auto" MinHeight="43"/>
+            <RowDefinition Height="Auto" MinHeight="28"/>
+        </Grid.RowDefinitions>
+
+        <Border Grid.Column="1" Height="35" Padding="5" Background="#58C9B9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
+            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">UART Tx</Label>
+        </Border>
+        <ListBox Name="txListBox" TabIndex="4" Grid.Column="1" Grid.Row="2" BorderThickness="0,0,0,0"/>
+
+        <!-- UART TX/Rx Button -->
+        <Button TabIndex="6" Grid.Column="3" Grid.Row="3" Width="125" HorizontalAlignment="Left" Click="btnSend_Click" Margin="175,10,0,6">Send</Button>
+
+        <TextBox Name ="uartTxTextBox" TabIndex="5" KeyDown="Window_KeyDown" TextChanged="uartTxTextBox_TextChanged" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" Width="480" Margin="0,10,0,6" Grid.ColumnSpan="3"/>
+
+        <Border Grid.Column="3" Height="35" Padding="5" Background="#58C9B9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
+            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">UART Rx</Label>
+        </Border>
+        <ListBox Name="rxListBox" Grid.Column="3" Grid.Row="2" BorderThickness="0,0,0,0"/>
+
+        <Menu Grid.Row="0" Grid.ColumnSpan="6" Margin="0,0,0,40" Background="LightGray">
+            <MenuItem Header="File" TabIndex="0">
+                <MenuItem Header="Open"/>
+                <MenuItem Header="Save"/>
+                <MenuItem Header="Exit" Click="MenuItem_Exit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit" TabIndex="1">
+                <MenuItem Header="Cut"/>
+                <MenuItem Header="Copy"/>
+                <MenuItem Header="Paste"/>
+            </MenuItem>
+            <MenuItem Header="Tools" TabIndex="2">
+                <MenuItem Header="Translate" Click="MenuItem_Translate_Click"/>
+                <MenuItem Header="Clear Communication" Click="MenuItem_ClearCommunication_Click" InputGestureText="Ctrl+W"/>
+            </MenuItem>
+            <MenuItem Header="Help" TabIndex="3">
+                <MenuItem Header="About"/>
+            </MenuItem>
+        </Menu>
+    </Grid>
+</Page>
+    
