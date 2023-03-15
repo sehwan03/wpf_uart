@@ -10,16 +10,16 @@
 
     <Grid Margin="10,0,10,10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
+            <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="300"/>
-            <ColumnDefinition />
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" MinHeight="99"/>
-            <RowDefinition Height="Auto" MinHeight="36"/>
-            <RowDefinition MinHeight="160"/>
-            <RowDefinition Height="Auto" MinHeight="40"/>
-            <RowDefinition Height="Auto" MinHeight="20"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="205"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Trebuchet MS" FontWeight="Bold" FontSize="26" Foreground="#000000" Content="UART Monitor" Height="40" Width="176"/>

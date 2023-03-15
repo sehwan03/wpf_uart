@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Translate.xaml.cs">
+      <DependentUpon>Translate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UART.xaml.cs">
       <DependentUpon>UART.xaml</DependentUpon>
     </Compile>
@@ -77,6 +80,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Translate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UART.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

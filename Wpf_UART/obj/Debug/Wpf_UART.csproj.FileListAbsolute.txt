@@ -36,3 +36,6 @@ C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Wpf_UART.csproj.Generat
 C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Wpf_UART.csproj.CoreCompileInputs.cache
 C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Wpf_UART.exe
 C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Wpf_UART.pdb
+C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Translate.g.cs
+C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Wpf_UART_MarkupCompile.lref
+C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Translate.baml

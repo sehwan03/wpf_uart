@@ -18,7 +18,7 @@
             <ColumnDefinition Width="30*" MinWidth="300"/>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="30*" MinWidth="300"/>
-            <ColumnDefinition Width="3*" MinWidth="30"/>
+            <ColumnDefinition Width="3*" MinWidth="40"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -37,7 +37,7 @@
         <!-- UART TX/Rx Button -->
         <Button TabIndex="6" Grid.Column="3" Grid.Row="3" Width="125" HorizontalAlignment="Left" Click="btnSend_Click" Margin="175,10,0,6">Send</Button>
 
-        <TextBox Name ="uartTxTextBox" TabIndex="5" KeyDown="Window_KeyDown" TextChanged="uartTxTextBox_TextChanged" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" Width="480" Margin="0,10,0,6" Grid.ColumnSpan="3"/>
+        <TextBox Name ="uartTxTextBox" TabIndex="5" KeyDown="Window_KeyDown" TextChanged="uartTxTextBox_TextChanged" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" Width="480" Margin="0,10,0,6"/>
 
         <Border Grid.Column="3" Height="35" Padding="5" Background="#58C9B9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
             <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">UART Rx</Label>

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO.Ports;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Wpf_UART
 {
@@ -75,7 +76,7 @@ namespace Wpf_UART
                 UART uartPage = new UART(serial);
                 this.NavigationService.Navigate(uartPage);
             }
-            catch(Exception ex )
+            catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }

@@ -26,10 +26,12 @@ namespace Wpf_UART
     public partial class UART : Page
     {
         private SerialPort serial;
+        private Translate translate;
 
         public UART(SerialPort rxPort)
         {
             InitializeComponent();
+            translate = new Translate();
 
             serial = rxPort;
             //set serial recieve function
@@ -166,6 +168,19 @@ namespace Wpf_UART
                 }
             }
         }
+        private void MenuItem_Translate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                translate.Owner = Application.Current.MainWindow;
+                translate.WindowStartupLocation= WindowStartupLocation.CenterOwner;
+                translate.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
@@ -227,10 +242,7 @@ namespace Wpf_UART
                 }
                 catch (Exception ex)
                 {
-                    /*para.Inlines.Add("Failed to SEND" + data + "\n" + ex + "\n");
-                    mcFlowDoc.Blocks.Add(para);
-                    Commdata.Document = mcFlowDoc;*/
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error); 
                 }
             }
         }
