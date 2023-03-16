@@ -71,10 +71,6 @@ namespace Wpf_UART
             }
         }
 
-        private void MenuItem_Translate_Click(object sender, EventArgs e)
-        {
-
-        }
         private void MenuItem_ClearCommunication_Click(object sender, EventArgs e)
         {
             txListBox.Items.Clear();
@@ -173,13 +169,14 @@ namespace Wpf_UART
             try
             {
                 translate.Owner = Application.Current.MainWindow;
-                translate.WindowStartupLocation= WindowStartupLocation.CenterOwner;
+                translate.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                 translate.ShowDialog();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            translate = new Translate();        
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -193,6 +190,10 @@ namespace Wpf_UART
                 if (e.Key == Key.S)
                 {
                     MenuItem_Save_Click(sender, e);
+                }
+                if (e.Key == Key.T)
+                {
+                    MenuItem_Translate_Click(sender, e);
                 }
             }
         }

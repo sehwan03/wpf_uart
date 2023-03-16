@@ -24,8 +24,18 @@ namespace Wpf_UART
         {
             InitializeComponent();
         }
+
+        private void TranslateButton_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TranslateButton_Click(sender, e);
+                e.Handled = true; // 이벤트 버블링을 막음
+            }
+        }
+
         // 버튼 클릭 이벤트 핸들러
-        private void translateButton_Click(object sender, RoutedEventArgs e)
+        private void TranslateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
