@@ -39,6 +39,7 @@ namespace Wpf_UART
         {
             try
             {
+                XORListBox.Items.Clear();
                 if (AsciiRadioButton.IsChecked == true)         // bug: Can't delete space
                 {
                     string ascii = AsciiTextBox.Text.Replace(" ", "");
@@ -72,6 +73,13 @@ namespace Wpf_UART
                         .ToArray();
                     // Hex to ASCII
                     string ascii = Encoding.ASCII.GetString(bytes);
+                    for (int i = 0; i < ascii.Length; i++)
+                    {
+                        if ((int)ascii[i] > 127)
+                        {
+                            ascii = ascii.Replace(ascii[i], '?');
+                        }
+                    }
                     AsciiTextBox.Text = ascii;
                     // Hex to Binary
                     string binary = String.Join(" ", bytes.Select(b => Convert.ToString(b, 2).PadLeft(8, '0')));
@@ -87,6 +95,13 @@ namespace Wpf_UART
                     {
                         ascii += (char)Convert.ToByte(binary.Substring(i, 8), 2);
                     }
+                    for (int i = 0; i < ascii.Length; i++)
+                    {
+                        if ((int)ascii[i] > 127)
+                        {
+                            ascii = ascii.Replace(ascii[i], '?');
+                        }
+                    }
                     AsciiTextBox.Text = ascii;
 
                     // Binary to Hex
@@ -97,6 +112,17 @@ namespace Wpf_UART
                     }
                     HexTextBox.Text = hex;
                 }
+
+                // hex XOR calculate
+                string[] hexValues = HexTextBox.Text.Split(' ');
+                byte result = 0;
+                foreach(string hex in hexValues)
+                {
+                    byte b = Convert.ToByte(hex, 16);
+                    result ^= b;
+                }
+                string xorResult = result.ToString("X2");
+                XORListBox.Items.Add(xorResult);
             }
             catch (Exception ex)
             {

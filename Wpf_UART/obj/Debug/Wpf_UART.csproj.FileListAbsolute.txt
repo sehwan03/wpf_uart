@@ -41,3 +41,5 @@ C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Wpf_UART_MarkupCompile.
 C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\Translate.baml
 C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\ResourceDictionary.baml
 C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\App.baml
+C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\about.g.cs
+C:\Users\3alogics\Documents\git_local\Wpf_UART\obj\Debug\about.baml

@@ -25,21 +25,20 @@
         <Label Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Trebuchet MS" FontWeight="Bold" FontSize="26" Foreground="#000000" Content="UART Monitor" Height="40" Width="176"/>
 
         <!-- Coms Port list -->
-        <Border Grid.Column="1" Grid.Row="1" Padding="5" Background="#58C9B9" CornerRadius="5,5,0,0" Height="36" VerticalAlignment="Center">
-            <Label HorizontalAlignment="Center" Foreground="White">Ports</Label>
-
+        <Border Grid.Column="1" Grid.Row="1" Padding="5" Background="#59C2C9" CornerRadius="5,5,0,0" Height="36" VerticalAlignment="Center">
+            <Label HorizontalAlignment="Center" Foreground="White" FontFamily="Trebuchet MS" FontSize="16" Margin="0,-2,0,-3" FontWeight="Bold">Ports</Label>
         </Border>
         <ListBox MouseDoubleClick="portsListBox_MouseDoubleClick" Name="portsListBox" Grid.Column="1" Grid.Row="2" BorderThickness="0,0,0,1" />
 
         <!-- UART TX/Rx Button -->
-        <Button Name="btnSelect" Grid.Column="1" Grid.Row="3" Margin="0,12,0,2" Width="125" HorizontalAlignment="Left" Click="btnSelect_Click" IsEnabled="False" Style="{StaticResource NoHoverButton}" >Select</Button>
+        <Button Name="btnSelect" Grid.Column="1" Grid.Row="3" Margin="0,12,0,2" Width="125" HorizontalAlignment="Left" Click="btnSelect_Click" IsEnabled="False" Style="{StaticResource HoverButton}" >Select</Button>
         <ComboBox Name="baudsComboBox" Grid.Column="1" Grid.Row="3" Margin="0,12,0,2" Width="125" HorizontalAlignment="Right">
             <ComboBoxItem IsSelected="True">9600</ComboBoxItem>
             <ComboBoxItem>57600</ComboBoxItem>
             <ComboBoxItem>115200</ComboBoxItem>
         </ComboBox>
         <Button Grid.Column="2" Content="" HorizontalAlignment="Left" Height="74" Margin="65,46,0,0" Grid.Row="2" VerticalAlignment="Top" Width="39" Click="Button_Click" Style="{StaticResource NoHoverButton}"/>
-        <Button Content="Refresh" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="52" Margin="5,0,0,0" Click="Refresh_Click" Style="{StaticResource NoHoverButton}" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Height="26" VerticalAlignment="Center" Width="52" Margin="5,0,0,0" Click="Refresh_Click" Style="{StaticResource RefreshButton}" FontFamily="Trebuchet MS" Grid.Row="1" Grid.Column="1"/>
 
         <Grid.Background>
             <ImageBrush ImageSource=".\Media\Images\laptop.png"/>

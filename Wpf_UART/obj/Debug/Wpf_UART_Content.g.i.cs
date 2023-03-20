@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("usb-icon-36766-removebg-preview.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("usb-icon.ico")]
 
 

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wpf_UART"
         mc:Ignorable="d"
-        Title="Translate" Height="350" Width="550" ResizeMode="NoResize">
+        Title="Converter" Height="350" Width="550" ResizeMode="NoResize">
     <Grid Margin="10,0,10,10" KeyDown="TranslateButton_KeyDown">
         <Grid.Background>
             <SolidColorBrush Color="#94A4A5"/>
@@ -24,24 +24,29 @@
             <RowDefinition Height="45"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Border Grid.Column="1" Grid.Row="1" Height="55" Padding="5" Background="#58C9B9" VerticalAlignment="Center" CornerRadius="5,0,0,5">
-            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">Ascii</Label>
+        <Border Grid.Column="1" Grid.Row="1" Height="55" Padding="5" Background="#59C2C9" VerticalAlignment="Center" CornerRadius="5,0,0,5">
+            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold">Ascii</Label>
         </Border>
         <TextBox Name ="AsciiTextBox" Grid.Column="2" Grid.Row="1" Margin="0,10,0,10" Text="" VerticalContentAlignment="Center" BorderThickness="0,0,0,0" TextChanged="AsciiTextBox_TextChanged" GotFocus="AsciiGotFocus"/>
 
-        <Border Grid.Column="1" Grid.Row="2" Height="55" Padding="5" Background="#58C9B9" VerticalAlignment="Center" CornerRadius="5,0,0,5">
-            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">Hex</Label>
+        <Border Grid.Column="1" Grid.Row="2" Height="55" Padding="5" Background="#59C2C9" VerticalAlignment="Center" CornerRadius="5,0,0,5">
+            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold">Hex</Label>
         </Border>
         <TextBox Name ="HexTextBox" Grid.Column="2" Grid.Row="2" Margin="0,10,0,10" Text="" VerticalContentAlignment="Center" BorderThickness="0,0,0,0" TextChanged="HexTextBox_TextChanged" GotFocus="HexGotFocus"/>
 
-        <Border Grid.Column="1" Grid.Row="3" Height="55" Padding="5" Background="#58C9B9" VerticalAlignment="Center" CornerRadius="5,0,0,5">
-            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" Margin="5,0,0,0">Binary</Label>
+        <Border Grid.Column="1" Grid.Row="3" Height="55" Padding="5" Background="#59C2C9" VerticalAlignment="Center" CornerRadius="5,0,0,5">
+            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center" Margin="5,0,0,0" FontWeight="Bold">Binary</Label>
         </Border>
         <TextBox Name ="BinaryTextBox" Grid.Column="2" Grid.Row="3" Margin="0,10,0,10" Text="" VerticalContentAlignment="Center" BorderThickness="0,0,0,0" TextChanged="BinaryTextBox_TextChanged" GotFocus="BinaryGotFocus"/>
 
-        <RadioButton Name="AsciiRadioButton"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,1,0,0"/>
-        <RadioButton Name="HexRadioButton"    Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,1,0,0"/>
-        <RadioButton Name="BinaryRadioButton" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10,1,0,0"/>
-        <Button Grid.Column="2" Grid.Row="4" Margin="310,10,0,10" Width="95" HorizontalAlignment="Left" Click="TranslateButton_Click" Style="{StaticResource NoHoverButton}">Translate</Button>
+        <Border Grid.Column="1" Grid.Row="4" Background="#2A777D" VerticalAlignment="Center" Margin="40,10,0,10" CornerRadius="5,0,0,5" Height="25" Width="40">
+            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Right" Width="34" FontSize="10" FontFamily="Trebuchet MS" FontWeight="Bold">XOR</Label>
+        </Border>
+        <ListBox Name="XORListBox" Grid.Column="2" Grid.Row="4" Margin="0,0,300,0" VerticalAlignment="Center" BorderThickness="0,0,0,0" Height="25"/>
+
+        <RadioButton Name="AsciiRadioButton"  Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,1,0,0" FontFamily="Trebuchet MS"/>
+        <RadioButton Name="HexRadioButton"    Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,1,0,0" FontFamily="Trebuchet MS"/>
+        <RadioButton Name="BinaryRadioButton" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10,1,0,0" FontFamily="Trebuchet MS"/>
+        <Button Grid.Column="2" Grid.Row="4" Margin="310,10,0,10" Width="95" HorizontalAlignment="Left" Click="TranslateButton_Click" Style="{StaticResource HoverButton}">Translate</Button>
     </Grid>
 </Window>

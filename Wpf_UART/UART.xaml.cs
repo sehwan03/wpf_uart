@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using System.Threading;
 using Microsoft.Win32;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Wpf_UART
 {
@@ -26,12 +27,15 @@ namespace Wpf_UART
     public partial class UART : Page
     {
         private SerialPort serial;
-        private Translate translate;
+        private Translate converter;
+        private About about;
 
         public UART(SerialPort rxPort)
         {
             InitializeComponent();
-            translate = new Translate();
+            converter = new Translate();
+            about = new About();
+
 
             serial = rxPort;
             //set serial recieve function
@@ -51,6 +55,18 @@ namespace Wpf_UART
         {
             string text = uartTxTextBox.Text.Replace(" ", "");
 
+            // Check if the text contains only hexadecimal characters
+            if (!Regex.IsMatch(text, "^[0-9A-Fa-f]*$"))
+            {
+                // If the text contains other characters, remove them and exit the method
+                uartTxTextBox.Text = Regex.Replace(uartTxTextBox.Text, "[^0-9A-Fa-f ]", "");
+                uartTxTextBox.SelectionStart = uartTxTextBox.Text.Length;
+                return;
+            }
+
+            // Replace any characters that are not numbers or A-F with an empty string
+            text = Regex.Replace(text, "[^0-9A-Fa-f]", "");
+
             // Insert spaces every two characters
             for (int i = 2; i < text.Length; i += 3)
             {
@@ -69,69 +85,6 @@ namespace Wpf_UART
                 btnSend_Click(sender, e);
                 e.Handled = true; // 이벤트 버블링을 막음
             }
-        }
-
-        private void MenuItem_ClearCommunication_Click(object sender, EventArgs e)
-        {
-            txListBox.Items.Clear();
-            rxListBox.Items.Clear();
-        }
-
-        private void MenuItem_Exit_Click(object sender, EventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void MenuItem_Save_Click(object sender, RoutedEventArgs e)
-        {
-#if false
-            // Create a RenderTargetBitmap of the desired size and render the content.
-            RenderTargetBitmap renderBitmap = new RenderTargetBitmap(
-                (int)this.ActualWidth, (int)this.ActualHeight, 96, 96, PixelFormats.Pbgra32);
-            renderBitmap.Render(this);
-
-            // Create a file dialog for saving the png file.
-            SaveFileDialog saveDialog = new SaveFileDialog();
-            saveDialog.Filter = "PNG Image|*.png";
-            if (saveDialog.ShowDialog() == true)
-            {
-                // Create a PngBitmapEncoder and save the image to the file.
-                PngBitmapEncoder encoder = new PngBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(renderBitmap));
-                using (FileStream stream = new FileStream(saveDialog.FileName, FileMode.Create))
-                {
-                    encoder.Save(stream);
-                }
-            }
-#else
-            // Create a new save file dialog
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-
-            // Set the file filter
-            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
-
-            // Show the save file dialog and get the result
-            bool? result = saveFileDialog.ShowDialog();
-
-            // Check if the user clicked the "Save" button
-            if (result == true)
-            {
-                // Get the selected file path
-                string filePath = saveFileDialog.FileName;
-
-                // Save the contents of the txListBox to the selected file
-                List<string> allItems = new List<string>();
-                foreach (string item in txListBox.Items)
-                {
-                    allItems.Add(item + ";");
-                }
-                foreach (string item in rxListBox.Items)
-                {
-                    allItems.Add(item.Replace(Environment.NewLine, "")) ;
-                }
-                File.WriteAllText(filePath, string.Join("", allItems));
-            }
-#endif
         }
 
         private void MenuItem_Open_Click(object sender, EventArgs e)
@@ -164,28 +117,103 @@ namespace Wpf_UART
                 }
             }
         }
-        private void MenuItem_Translate_Click(object sender, RoutedEventArgs e)
+
+        private void MenuItem_Save_Click(object sender, RoutedEventArgs e)
+        {
+            // Create a new save file dialog
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            // Set the file filter
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt";
+
+            // Show the save file dialog and get the result
+            bool? result = saveFileDialog.ShowDialog();
+
+            // Check if the user clicked the "Save" button
+            if (result == true)
+            {
+                // Get the selected file path
+                string filePath = saveFileDialog.FileName;
+
+                // Save the contents of the txListBox to the selected file
+                List<string> allItems = new List<string>();
+                foreach (string item in txListBox.Items)
+                {
+                    allItems.Add(item + ";");
+                }
+                foreach (string item in rxListBox.Items)
+                {
+                    allItems.Add(item.Replace(Environment.NewLine, ""));
+                }
+                File.WriteAllText(filePath, string.Join("", allItems));
+            }
+        }
+        private void MenuItem_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void MenuItem_Back_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                translate.Owner = Application.Current.MainWindow;
-                translate.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                translate.ShowDialog();
+                serial.Close();
+                Home homePage = new Home();
+                this.NavigationService.Navigate(homePage);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            translate = new Translate();        
+        }
+
+        private void MenuItem_ClearCommunication_Click(object sender, EventArgs e)
+        {
+            txListBox.Items.Clear();
+            rxListBox.Items.Clear();
+        }
+
+        private void MenuItem_Converter_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                converter.Owner = Application.Current.MainWindow;
+                converter.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                converter.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            converter = new Translate();        
+        }
+
+        private void MenuItem_About_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                about.Owner = Application.Current.MainWindow;
+                about.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                about.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            about = new About();
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
-                if (e.Key == Key.W)
+                if (e.Key == Key.B)
                 {
-                    MenuItem_ClearCommunication_Click(sender, e);
+                    MenuItem_Back_Click(sender, e);
+                }
+                if (e.Key == Key.O)
+                {
+                    MenuItem_Open_Click(sender, e);
                 }
                 if (e.Key == Key.S)
                 {
@@ -193,7 +221,11 @@ namespace Wpf_UART
                 }
                 if (e.Key == Key.T)
                 {
-                    MenuItem_Translate_Click(sender, e);
+                    MenuItem_Converter_Click(sender, e);
+                }
+                if (e.Key == Key.W)
+                {
+                    MenuItem_ClearCommunication_Click(sender, e);
                 }
             }
         }

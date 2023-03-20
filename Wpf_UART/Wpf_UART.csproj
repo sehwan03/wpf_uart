@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>usb-icon-36766-removebg-preview.ico</ApplicationIcon>
+    <ApplicationIcon>usb-icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -59,12 +59,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Translate.xaml.cs">
       <DependentUpon>Translate.xaml</DependentUpon>
     </Compile>
     <Compile Include="UART.xaml.cs">
       <DependentUpon>UART.xaml</DependentUpon>
     </Compile>
+    <Page Include="About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Home.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,10 +143,7 @@
     <Resource Include="usb-icon-36766.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="usb-icon-36766 %281%29.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="usb-icon-36766-removebg-preview.ico" />
+    <Resource Include="usb-icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

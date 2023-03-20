@@ -83,8 +83,7 @@ namespace Wpf_UART
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            
+            } 
         }
 
         //setup serial port. should probably do this somewhere else.

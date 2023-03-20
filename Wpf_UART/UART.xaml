@@ -28,18 +28,18 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
-        <Border Grid.Column="1" Height="35" Padding="5" Background="#58C9B9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
-            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">UART Tx</Label>
+        <Border Grid.Column="1" Height="35" Padding="5" Background="#59C2C9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
+            <Label VerticalAlignment="Center" FontFamily="Trebuchet MS" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold">UART Tx</Label>
         </Border>
         <ListBox Name="txListBox" TabIndex="4" Grid.Column="1" Grid.Row="2" BorderThickness="0,0,0,0"/>
 
         <!-- UART TX/Rx Button -->
-        <Button TabIndex="6" Grid.Column="3" Grid.Row="3" Width="125" HorizontalAlignment="Left" Click="btnSend_Click" Margin="175,10,0,6" Style="{StaticResource NoHoverButton}">Send</Button>
+        <Button TabIndex="6" Grid.Column="3" Grid.Row="3" Width="125" HorizontalAlignment="Left" Click="btnSend_Click" Margin="175,10,0,6" Style="{StaticResource HoverButton}">Hex Send</Button>
 
         <TextBox Name ="uartTxTextBox" TabIndex="5" KeyDown="Window_KeyDown" TextChanged="uartTxTextBox_TextChanged" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="3" HorizontalAlignment="Left" VerticalContentAlignment="Center" TextWrapping="Wrap" Text="" Width="480" Margin="0,10,0,6"/>
 
-        <Border Grid.Column="3" Height="35" Padding="5" Background="#58C9B9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
-            <Label VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Center">UART Rx</Label>
+        <Border Grid.Column="3" Height="35" Padding="5" Background="#59C2C9" VerticalAlignment="Top" Margin="0,55,0,0" Grid.RowSpan="2" CornerRadius="5,5,0,0">
+            <Label VerticalAlignment="Center" FontFamily="Trebuchet MS" Foreground="White" HorizontalAlignment="Center" FontWeight="Bold">UART Rx</Label>
         </Border>
         <ListBox Name="rxListBox" Grid.Column="3" Grid.Row="2" BorderThickness="0,0,0,0"/>
 
@@ -50,14 +50,14 @@
                 <MenuItem Header="Exit" Click="MenuItem_Exit_Click" InputGestureText="Alt+F4"/>
             </MenuItem>
             <MenuItem Header="Edit" TabIndex="1">
-                <MenuItem Header="Non Function"/>
-            </MenuItem>
-            <MenuItem Header="Tools" TabIndex="2">
-                <MenuItem Header="Translate" Click="MenuItem_Translate_Click" InputGestureText="Ctrl+T"/>
+                <MenuItem Header="Back" Click="MenuItem_Back_Click" InputGestureText="Ctrl+B"/>
                 <MenuItem Header="Clear Communication" Click="MenuItem_ClearCommunication_Click" InputGestureText="Ctrl+W"/>
             </MenuItem>
+            <MenuItem Header="Tools" TabIndex="2">
+                <MenuItem Header="Converter" Click="MenuItem_Converter_Click" InputGestureText="Ctrl+T"/>
+            </MenuItem>
             <MenuItem Header="Help" TabIndex="3">
-                <MenuItem Header="About"/>
+                <MenuItem Header="About" Click="MenuItem_About_Click"/>
             </MenuItem>
         </Menu>
     </Grid>
