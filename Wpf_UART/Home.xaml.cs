@@ -23,13 +23,13 @@ namespace Wpf_UART
     public partial class Home : Page
     {
         private SerialPort serial;  //serial port to send to uart page
-        private Translate translate;
+        private Translate converter;
 
         public Home()
         {
             InitializeComponent();
             serial = new SerialPort();
-            translate = new Translate();
+            converter = new Translate();
 
             try
             {
@@ -43,7 +43,6 @@ namespace Wpf_UART
                     {
                         portsListBox.Items.Add(portName);
                     }
-                    //generate ports list
                 }
                 else
                 {
@@ -53,8 +52,7 @@ namespace Wpf_UART
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-                
+            }  
         }
 
         private void portsListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -105,35 +103,43 @@ namespace Wpf_UART
         {
             try
             {
-                translate.Owner = System.Windows.Application.Current.MainWindow;
-                translate.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-                translate.ShowDialog();
+                converter.Owner = System.Windows.Application.Current.MainWindow;
+                converter.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                converter.ShowDialog();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            translate = new Translate();
+            converter = new Translate();
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            if (SerialPort.GetPortNames().Length != 0)
+            try
+            {
+                if (SerialPort.GetPortNames().Length != 0)
+                {
+                    portsListBox.Items.Clear();
+
+                    btnSelect.IsEnabled = true;
+                    string[] portNames = SerialPort.GetPortNames();
+                    Array.Sort(portNames);
+                    foreach (string portName in portNames)
+                    {
+                        portsListBox.Items.Add(portName);
+                    }
+                    //generate ports list
+                }
+                else
+                {
+                    throw new Exception("No serial ports found");
+                }
+            }
+            catch (Exception ex)
             {
                 portsListBox.Items.Clear();
-
-                btnSelect.IsEnabled = true;
-                string[] portNames = SerialPort.GetPortNames();
-                Array.Sort(portNames);
-                foreach (string portName in portNames)
-                {
-                    portsListBox.Items.Add(portName);
-                }
-                //generate ports list
-            }
-            else
-            {
-                throw new Exception("No serial ports found");
+                MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)

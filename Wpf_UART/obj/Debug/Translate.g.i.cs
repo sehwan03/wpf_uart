@@ -108,7 +108,7 @@ namespace Wpf_UART {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wpf_UART;component/translate.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/UART_Monitor;component/translate.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\Translate.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

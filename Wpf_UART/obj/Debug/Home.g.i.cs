@@ -75,7 +75,7 @@ namespace Wpf_UART {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/Wpf_UART;component/home.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/UART_Monitor;component/home.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\Home.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

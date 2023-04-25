@@ -18,7 +18,7 @@
                             <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background"  Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}" />
+                                <Setter Property="Background"  Value="{DynamicResource {x:Static SystemColors.ControlDarkBrushKey}}"/>
                                 <Setter Property="Foreground"  Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
                                 <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"/>
                             </Trigger>
