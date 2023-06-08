@@ -55,6 +55,7 @@ Then, the xor operation is performed on the value, and it is entered into the XO
 ![image](https://github.com/sehwan03/wpf_uart/assets/102276311/444935d5-6475-4a5b-a678-6fc3af902fe1)
 
 HW: Two USB to TTL converters are cross-connected with Rx and Tx.
+
 SW: This program is connected to COM port 5, while Docklight is connected to COM port 6. The baud rate is set to 9600.
 
 ### 2. Tx state
