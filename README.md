@@ -68,3 +68,4 @@ SW: This program is connected to COM port 5, while Docklight is connected to COM
 ![image](https://github.com/sehwan03/wpf_uart/assets/102276311/0ca9e688-b79a-4490-a627-3d682af90290)
 
 
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsehwan03%2Fwpf_uart&count_bg=%235AD5CC&title_bg=%23969696&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
